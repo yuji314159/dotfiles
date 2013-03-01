@@ -18,6 +18,13 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt inc_append_history
 setopt share_history
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
 
 # Prompting
 setopt transient_rprompt
@@ -74,4 +81,14 @@ function spectrum_ls() {
         fi
     done
 }
+
+# easy C-lang runner
+function runc () {
+    cc $CFLAGS $1 $LDFLAGS; ./a.out $2 $3 $4 $5 $6 $7 $8 $9;
+}
+alias -s c=runc
+function runcpp () {
+    c++ $CXXFLAGS $1 $LDFLAGS; ./a.out $2 $3 $4 $5 $6 $7 $8 $9;
+}
+alias -s {cc,cpp}=runcpp
 
