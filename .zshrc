@@ -33,9 +33,6 @@ darwin*)
     PS1='%(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%k %n@%m%f%(!,#,$) '
     RPS1='[%~]'
 
-    # completion
-    fpath=($HOME/dotfiles/.zsh/functions $fpath)
-
     # colorize commands
     alias ls='ls -FG'
     export LSCOLORS='exfxcxdxbxegedabagacad'
@@ -79,6 +76,7 @@ linux*)
 esac
 
 # completion
+fpath=($HOME/dotfiles/.zsh/functions $fpath)
 autoload -u compinit
 compinit -i
 
