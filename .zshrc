@@ -77,11 +77,11 @@ esac
 
 # completion
 fpath=($HOME/dotfiles/.zsh/functions $fpath)
-autoload -u compinit
+autoload -U compinit
 compinit -i
 
 # zmv
-autoload -u zmv
+autoload -U zmv
 alias zmv='noglob zmv -w'
 
 # take
