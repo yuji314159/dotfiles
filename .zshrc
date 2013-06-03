@@ -63,6 +63,8 @@ darwin*)
     ;;
 linux*)
     # prompt
+    autoload -U colors
+    colors
     PS1="[%{^[[34m%}%n@%{^[[34m%}%m %{^[[32m%}%~%{^[[00m%}]$ "
 
     # path
