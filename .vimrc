@@ -50,12 +50,13 @@ set autoindent
 set smartindent
 set paste
 au FileType ruby setlocal sw=2 sts=2
+au FileType yaml setlocal sw=2 sts=2
 
 " misc
 set clipboard+=unnamed,unnamedplus
 
 " zenkaku-space
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guifg=gray
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue gui=underline guifg=lightblue
 match ZenkakuSpace /　/
 
 " keymap
