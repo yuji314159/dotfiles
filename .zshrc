@@ -90,6 +90,9 @@ function take() {
   cd $1
 }
 
+# webrick
+alias webrick="ruby -rwebrick -e 'WEBrick::HTTPServer.new(DocumentRoot: \"./\", Port: 3000).start'"
+
 # easy C-lang runner
 function runc () {
     cc $CFLAGS $1 $LDFLAGS; ./a.out $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 $13 $14 $15 $16;
