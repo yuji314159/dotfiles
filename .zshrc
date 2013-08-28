@@ -1,6 +1,6 @@
 # users generic .zshrc file for zsh(1)
 
-# general Configuration
+# general
 setopt auto_cd
 setopt auto_pushd
 setopt chase_links
@@ -18,7 +18,7 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt inc_append_history
 setopt share_history
-autoload -U history-search-end
+autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
@@ -30,8 +30,18 @@ case "$OSTYPE" in
 darwin*)
     # prompt
     #setopt transient_rprompt
-    PS1='%(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%k %n@%m%f%(!,#,$) '
-    RPS1='[%~]'
+    setopt prompt_subst
+    PS1='%(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%k %F{blue}%n@%m%f%(!,#,$) '
+    RPS1='${vcs_info_msg_0_}[%F{blue}%~%f]'
+
+    # vcs prompt
+    autoload -Uz vcs_info
+    vcs_info
+    zstyle ':vcs_info:git:*' formats '(%F{green}%r/%b%f)-'
+    zstyle ':vcs_info:git:*' actionformats '(%F{green}%r/%b%f-%F{red}%a%f)-'
+    precmd() {
+        vcs_info
+    }
 
     # colorize commands
     alias ls='ls -FG'
@@ -42,7 +52,7 @@ darwin*)
     export GREP_COLOR='1;31'
 
     # MacVim
-    alias vi='vim'
+    alias vi=vim
     alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
     alias view='/Applications/MacVim.app/Contents/MacOS/view'
     alias vimdiff='/Applications/MacVim.app/Contents/MacOS/vimdiff'
@@ -71,17 +81,18 @@ linux*)
     # alias
     alias ls='ls -F --color=auto'
     alias vi=vim
+    alias mvim=gvim
 
     ;;
 esac
 
 # completion
 fpath=($HOME/dotfiles/.zsh/functions $fpath)
-autoload -U compinit
+autoload -Uz compinit
 compinit -i
 
 # zmv
-autoload -U zmv
+autoload -Uz zmv
 alias zmv='noglob zmv -w'
 
 # take
@@ -106,13 +117,13 @@ alias -s {cc,cpp,cxx}=runcpp
 # spectrum list
 function spectrum_ls() {
     for code in {000..015}; do
-        print -P -n "%F{$code}$code "
+        print -P -n "[38;05;${code}m$code "
         if [ `expr $code % 8` -eq 7  ]; then
             print
         fi
     done
     for code in {016..255}; do
-        print -P -n "%F{$code}$code "
+        print -P -n "[38;05;${code}m$code "
         if [ `expr $code % 6` -eq 3  ]; then
             print
         fi
