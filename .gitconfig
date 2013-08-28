@@ -1,0 +1,7 @@
+[user]
+	name = yuji314159
+	email = yuji314159@gmail.com
+[color]
+	ui = always
+[push]
+	default = simple
