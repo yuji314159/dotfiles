@@ -1,28 +1,36 @@
+" users generic .zshrc file for zsh(1)
+
 " for Vim
 set nocompatible
 
-" editor
+" view
 set number
 set ruler
 set wrap
 set textwidth=0
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
+set colorcolumn=80
+autocmd WinEnter * set cursorline cursorcolumn
+autocmd WinLeave * set nocursorline nocursorcolumn
 set showmatch
+set matchpairs+=<:>
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set ambiwidth=double
+set scrolloff=4
+
+" edit
+"set paste
 set backspace=indent,eol,start
 set whichwrap=b,s
-set scrolloff=4
+set clipboard+=unnamed,unnamedplus
 
 " file
 set hidden
 set confirm
 set autoread
-set backup
-set writebackup
-set swapfile
+set nobackup
+set nowritebackup
+set noswapfile
 
 " search
 set hlsearch
@@ -48,16 +56,9 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
-set paste
-au FileType ruby setlocal sw=2 sts=2
-au FileType yaml setlocal sw=2 sts=2
-
-" misc
-set clipboard+=unnamed,unnamedplus
-
-" zenkaku-space
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue gui=underline guifg=lightblue
-match ZenkakuSpace /　/
+autocmd FileType ruby setlocal sw=2 sts=2
+autocmd FileType yaml setlocal sw=2 sts=2
+"autocmd FileType make setlocal noexpandtab
 
 " keymap
 inoremap <C-c> <ESC>
@@ -71,28 +72,40 @@ nnoremap k gk
 nnoremap l <Right>
 nnoremap <Down> gj
 nnoremap <Up>   gk
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+nnoremap <C-h> :<C-u>help<Space><C-r><C-w><Enter>
 vnoremap <C-p> "0p<CR>
 
-" for NeoBundle
+" zenkaku-space
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue gui=underline guifg=lightblue
+match ZenkakuSpace /　/
+
+" plugins
 filetype off
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
 endif
+call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundle 'Shougo/neobundle.vim'
+" general
+NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/unite.vim'
-"NeoBundle 'Lokaltog/powerline'
-NeoBundle 'surround.vim'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'tpope/vim-surround'
+NeoBundle 'itchyny/lightline.vim'
 
 " for Web Development
-NeoBundle 'ZenCoding.vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 
+" color scheme
 NeoBundle 'tomasr/molokai'
 
 filetype plugin indent on
+NeoBundleCheck
+
+" lightline.vim
+let g:lightline = {
+            \'colorscheme': 'wombat',
+            \ }
 
