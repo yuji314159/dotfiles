@@ -67,8 +67,8 @@ darwin*)
     # Heroku Toolbelt
     export PATH="/usr/local/heroku/bin:$PATH"
 
-    # TeX Live 2012
-    export PATH="/usr/local/texlive/2012/bin/x86_64-darwin:$PATH"
+    # TeX Live 2013
+    export PATH="/usr/local/texlive/2013/bin/x86_64-darwin:$PATH"
 
     ;;
 linux*)
