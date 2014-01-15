@@ -1,0 +1,71 @@
+" for Vim
+set nocompatible
+set notitle
+
+
+" view
+set number
+set ruler
+set wrap
+set textwidth=0
+set colorcolumn=80
+autocmd WinEnter * set cursorline cursorcolumn
+autocmd WinLeave * set nocursorline nocursorcolumn
+
+set showmatch
+set matchpairs+=<:>
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+set ambiwidth=double
+set scrolloff=4
+
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue
+match ZenkakuSpace /　/
+
+
+" edit
+set backspace=indent,eol,start
+set whichwrap=b,s
+set clipboard+=unnamed,unnamedplus
+
+
+" file
+set hidden
+set confirm
+set autoread
+set nobackup
+set nowritebackup
+set noswapfile
+
+
+" search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan
+set gdefault
+
+
+" commandline
+set showcmd
+set showmode
+set cmdheight=2
+set laststatus=2
+set wildmenu
+set wildmode=list:longest,full
+set history=10000
+
+
+" tab/indent
+set expandtab
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
+autocmd FileType ruby   setlocal sw=2 sts=2
+autocmd FileType yaml   setlocal sw=2 sts=2
+autocmd FileType vim    setlocal sw=2 sts=2
+autocmd FileType make   setlocal noexpandtab
+
