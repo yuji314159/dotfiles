@@ -60,6 +60,9 @@ darwin*)
     alias mview='/Applications/MacVim.app/Contents/MacOS/mview --remote-tab-silent'
     alias mvimdiff='/Applications/MacVim.app/Contents/MacOS/mvimdiff --remote-tab-silent'
 
+    # path
+    export PATH="/usr/local/bin:$PATH"
+
     # rbenv
     export RBENV_ROOT=/usr/local/var/rbenv
     eval "$(rbenv init -)"
