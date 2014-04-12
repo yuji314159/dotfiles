@@ -1,23 +1,23 @@
 # users generic .zshrc file for zsh(1)
 
-# general
-setopt auto_cd
+## directory
+#setopt auto_cd
 setopt auto_pushd
 setopt chase_links
 setopt pushd_ignore_dups
-setopt list_packed
-setopt correct
-LISTMAX=0
 
-# history
+
+## history
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
+
 setopt extended_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt inc_append_history
 setopt share_history
+
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -26,15 +26,16 @@ bindkey "^N" history-beginning-search-forward-end
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
+
 case "$OSTYPE" in
 darwin*)
-    # prompt
+    ## prompt
     #setopt transient_rprompt
     setopt prompt_subst
     PS1='%(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%k %F{blue}%n@%m%f%(!,#,$) '
     RPS1='${vcs_info_msg_0_}[%F{blue}%~%f]'
 
-    # vcs prompt
+    # git
     autoload -Uz vcs_info
     vcs_info
     zstyle ':vcs_info:git:*' formats '(%F{green}%r/%b%f)-'
@@ -43,7 +44,8 @@ darwin*)
         vcs_info
     }
 
-    # colorize commands
+
+    ## colorful commands
     alias ls='ls -FG'
     export LSCOLORS='exfxcxdxbxegedabagacad'
     export LS_COLORS='no=00:fi=00:di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
@@ -51,7 +53,8 @@ darwin*)
     export GREP_OPTIONS='--color=auto'
     export GREP_COLOR='1;31'
 
-    # MacVim
+
+    ## MacVim aliases
     alias vi=vim
     alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
     alias view='/Applications/MacVim.app/Contents/MacOS/view'
@@ -60,8 +63,9 @@ darwin*)
     alias mview='/Applications/MacVim.app/Contents/MacOS/mview --remote-tab-silent'
     alias mvimdiff='/Applications/MacVim.app/Contents/MacOS/mvimdiff --remote-tab-silent'
 
-    # path
-    export PATH="/usr/local/bin:$PATH"
+
+    ## path
+    export PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
 
     # rbenv
     export RBENV_ROOT=/usr/local/var/rbenv
@@ -73,30 +77,42 @@ darwin*)
     # TeX Live 2013
     export PATH="/usr/local/texlive/2013/bin/x86_64-darwin:$PATH"
 
+
+    ## fpath
+    fpath=(/usr/local/share/zsh-completions $fpath)
+
     ;;
 linux*)
-    # prompt
+    ## prompt
     PS1="[%{[34m%}%n@%{[34m%}%m %{[32m%}%~%{[00m%}]$ "
 
-    # path
-    export PATH="$HOME/local/bin:$PATH"
 
-    # alias
+    ## alias
     alias ls='ls -F --color=auto'
     alias vi=vim
     alias mvim=gvim
 
+
+    ## path
+    export PATH="$HOME/local/bin:$PATH"
+
     ;;
 esac
 
-# completion
-fpath=($HOME/dotfiles/.zsh/functions $fpath)
+
+## completion
+setopt list_packed
+setopt correct
+LISTMAX=0
+
 autoload -Uz compinit
 compinit -i
 
+
+## useful commands
 # zmv
 autoload -Uz zmv
-alias zmv='noglob zmv -w'
+alias zmv='noglob zmv -W'
 
 # take
 function take() {
@@ -105,9 +121,10 @@ function take() {
 }
 
 # webrick
-alias webrick="ruby -rwebrick -e 'WEBrick::HTTPServer.new(DocumentRoot: \"./\", Port: 3000).start'"
+alias webrick="ruby -run -e httpd -- -p 3000 ."
+#alias webrick="ruby -rwebrick -e 'WEBrick::HTTPServer.new(DocumentRoot: \"./\", Port: 3000).start'"
 
-# easy C-lang runner
+# easy C/C++ runner
 function runc () {
     cc $CFLAGS $1 $LDFLAGS; ./a.out $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 $13 $14 $15 $16;
 }
@@ -132,4 +149,3 @@ function spectrum_ls() {
         fi
     done
 }
-
