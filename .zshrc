@@ -32,7 +32,7 @@ darwin*)
     ## prompt
     #setopt transient_rprompt
     setopt prompt_subst
-    PS1='%(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%k %F{blue}%n@%m%f%(!,#,$) '
+    PS1='%(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%k %F{cyan}%n@%m%f%(!,#,$) '
     RPS1='${vcs_info_msg_0_}[%F{blue}%~%f]'
 
     # git
