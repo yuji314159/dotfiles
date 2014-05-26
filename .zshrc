@@ -26,6 +26,16 @@ bindkey "^N" history-beginning-search-forward-end
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
+zshaddhistory() {
+    local line=${1%%$'\n'}
+    local cmd=${line%% *}
+
+    [[ ${#line} -ge 5
+        && ${cmd} != (ls)
+        && ${cmd} != (cd)
+    ]]
+}
+
 
 case "$OSTYPE" in
 darwin*)
