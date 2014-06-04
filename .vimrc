@@ -2,5 +2,5 @@
 
 source ~/dotfiles/.vimrc.basic
 source ~/dotfiles/.vimrc.keymap
-source ~/dotfiles/.vimrc.plugin
+"source ~/dotfiles/.vimrc.plugin
 

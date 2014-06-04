@@ -6,4 +6,9 @@ if has('gui_macvim')
     set antialias
     set transparency=5
     colorscheme molokai
+elseif has('unix')
+  set columns=100
+  set lines=48
+  set showtabline=2
+  colorscheme molokai
 endif
