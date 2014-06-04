@@ -26,6 +26,16 @@ bindkey "^N" history-beginning-search-forward-end
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
+zshaddhistory() {
+    local line=${1%%$'\n'}
+    local cmd=${line%% *}
+
+    [[ ${#line} -ge 5
+        && ${cmd} != (ls)
+        && ${cmd} != (cd)
+    ]]
+}
+
 
 case "$OSTYPE" in
 darwin*)
@@ -126,11 +136,11 @@ alias webrick="ruby -run -e httpd -- -p 3000 ."
 
 # easy C/C++ runner
 function runc () {
-    cc $CFLAGS $1 $LDFLAGS && ./a.out $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 $13 $14 $15 $16;
+    cc $CFLAGS $1 $LDFLAGS && shift && ./a.out $@
 }
 alias -s c=runc
 function runcpp () {
-    c++ $CXXFLAGS $1 $LDFLAGS && ./a.out $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 $13 $14 $15 $16;
+    c++ $CXXFLAGS $1 $LDFLAGS && shift && ./a.out $@
 }
 alias -s {cc,cpp,cxx}=runcpp
 
