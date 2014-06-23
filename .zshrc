@@ -106,6 +106,9 @@ linux*)
     ## path
     export PATH="$HOME/local/bin:$PATH"
 
+    ## to disallow write/wall access
+    mesg n
+
     ;;
 esac
 
