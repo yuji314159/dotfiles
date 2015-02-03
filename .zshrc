@@ -78,8 +78,8 @@ darwin*)
     export PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
 
     # rbenv
-    export RBENV_ROOT=/usr/local/var/rbenv
-    eval "$(rbenv init -)"
+    #export RBENV_ROOT=/usr/local/var/rbenv
+    #eval "$(rbenv init -)"
 
     # Heroku Toolbelt
     export PATH="/usr/local/heroku/bin:$PATH"
