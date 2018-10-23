@@ -49,9 +49,22 @@ PS1='
 
 
 ## path
-export PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
+# export PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+## pyenv & vitualenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+## goenv
+eval "$(goenv init -)"
+export GOROOT=`goenv prefix`
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+## gcp sdk
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
 ## completion
 autoload -Uz compinit
@@ -77,8 +90,8 @@ alias atom='/Applications/Atom.app/Contents/MacOS/Atom'
 # colorful commands
 alias ls='ls -FG'
 #export LSCOLORS='exfxcxdxbxegedabagacad'
-#export LS_COLORS='no=00:fi=00:di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+export LS_COLORS='no=00:fi=00:di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31'
 
