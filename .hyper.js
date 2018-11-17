@@ -6,10 +6,10 @@ module.exports = {
   config: {
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
-    updateChannel: 'stable',
+    updateChannel: 'canary',
 
     // default font size in pixels for all tabs
-    fontSize: 13,
+    fontSize: 14,
 
     // font family with optional fallbacks
     fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -20,8 +20,11 @@ module.exports = {
     // font weight for bold characters: 'normal' or 'bold'
     fontWeightBold: 'bold',
 
+    // line height as a relative unit
+    lineHeight: 1.08,
+
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: 'rgba(248,28,229,0.8)',
+    cursorColor: 'rgba(244, 191, 117, 0.8)',
 
     // terminal text color under BLOCK cursor
     cursorAccentColor: '#000',
@@ -30,20 +33,20 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // set to `true` (without backticks and without quotes) for blinking cursor
-    cursorBlink: false,
+    cursorBlink: true,
 
     // color of the text
-    foregroundColor: '#fff',
+    foregroundColor: '#d0d0d0',
 
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: '#000',
+    backgroundColor: 'rgba(21, 21, 21, 0.8)',
 
     // terminal selection color
-    selectionColor: 'rgba(248,28,229,0.3)',
+    selectionColor: 'rgba(244, 191, 117, 0.3)',
 
     // border color (window, tabs)
-    borderColor: '#333',
+    borderColor: '#f4bf75',
 
     // custom CSS to embed in the main window
     css: '',
@@ -66,23 +69,43 @@ module.exports = {
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
+    // molokai
+    // colors: {
+    //   black: '#121212',
+    //   red: '#fa2573',
+    //   green: '#98e123',
+    //   yellow: '#dfd460',
+    //   blue: '#1080d0',
+    //   magenta: '#8700ff',
+    //   cyan: '#43a8d0',
+    //   white: '#bbbbbb',
+    //   lightBlack: '#555555',
+    //   lightRed: '#f6669d',
+    //   lightGreen: '#b1e05f',
+    //   lightYellow: '#fff26d',
+    //   lightBlue: '#00afff',
+    //   lightMagenta: '#af87ff',
+    //   lightCyan: '#51ceff',
+    //   lightWhite: '#ffffff'
+    // },
+    // default
     colors: {
-      black: '#000000',
-      red: '#C51E14',
-      green: '#1DC121',
-      yellow: '#C7C329',
-      blue: '#0A2FC4',
-      magenta: '#C839C5',
-      cyan: '#20C5C6',
-      white: '#C7C7C7',
-      lightBlack: '#686868',
-      lightRed: '#FD6F6B',
-      lightGreen: '#67F86F',
-      lightYellow: '#FFFA72',
-      lightBlue: '#6A76FB',
-      lightMagenta: '#FD7CFC',
-      lightCyan: '#68FDFE',
-      lightWhite: '#FFFFFF',
+      black: '#151515',
+      red: '#ac4142',
+      green: '#90a959',
+      yellow: '#f4bf75',
+      blue: '#6a9fb5',
+      magenta: '#aa759f',
+      cyan: '#75b5aa',
+      white: '#d0d0d0',
+      lightBlack: '#505050',
+      lightRed: '#ac4142',
+      lightGreen: '#90a959',
+      lightYellow: '#f4bf75',
+      lightBlue: '#6a9fb5',
+      lightMagenta: '#aa759f',
+      lightCyan: '#75b5aa',
+      lightWhite: '#f5f5f5'
     },
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
