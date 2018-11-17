@@ -35,17 +35,26 @@ zshaddhistory() {
 
 ## prompt
 autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
+setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!%f"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+%f"
 zstyle ':vcs_info:git:*' formats ' %c%u(%F{green}%r/%b%f)'
 zstyle ':vcs_info:git:*' actionformats ' %c%u(%F{green}%r/%b%f-%F{red}%a%f)'
-precmd() { vcs_info }
-setopt prompt_subst
+_precmd_vcs_info() { vcs_info }
+add-zsh-hook precmd _precmd_vcs_info
 
 PS1='
 %(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%f %F{cyan}%n@%m%f %~${vcs_info_msg_0_}
 %(!,#,$) '
+
+## title
+autoload -Uz add-zsh-hook
+_precmd_title() { print -Pn '\e]0;%n@%m:%~\a' }
+add-zsh-hook precmd _precmd_title
+_preexec_title() { print -Pn '\e]0;${1%% *} | %n@%m:%~\a' }
+add-zsh-hook preexec _preexec_title
 
 
 ## path
