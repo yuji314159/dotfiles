@@ -1,13 +1,14 @@
-## basic options
-# directory
+# basic options
+## directory
 setopt chase_links
 
-# history
+## history
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 
 setopt extended_history
+setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
@@ -15,23 +16,23 @@ setopt inc_append_history
 setopt share_history
 
 autoload -Uz history-search-end
-zle -N history-beginning-search-backward-end
-zle -N history-beginning-search-forward-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
-bindkey '^R' history-incremental-pattern-search-backward
-bindkey '^S' history-incremental-pattern-search-forward
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+
+bindkey '^r' history-incremental-pattern-search-backward
+bindkey '^s' history-incremental-pattern-search-forward
 
 zshaddhistory() {
   local line=${1%%$'\n'}
   local cmd=${line%% *}
 
   [[ ${#line} -ge 6
-    #&& ${cmd} != (ls)
+    # && ${cmd} != (ls)
     && ${cmd} != (cd)
   ]]
 }
-
 
 ## prompt
 autoload -Uz vcs_info
@@ -57,9 +58,12 @@ _preexec_title() { print -Pn '\e]0;${1%% *} | %n@%m:%~\a' }
 add-zsh-hook preexec _preexec_title
 
 
-## path
+# path
 # export PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
+
+## rbenv
+eval "$(rbenv init -)"
 
 ## pyenv & vitualenv
 eval "$(pyenv init -)"
@@ -83,50 +87,48 @@ setopt list_packed
 setopt correct
 
 
-## aliases
-# vim
-alias vi=vim
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias view='/Applications/MacVim.app/Contents/MacOS/view'
-alias vimdiff='/Applications/MacVim.app/Contents/MacOS/vimdiff'
-alias mvim='/Applications/MacVim.app/Contents/MacOS/mvim --remote-tab-silent'
-alias mview='/Applications/MacVim.app/Contents/MacOS/mview --remote-tab-silent'
-alias mvimdiff='/Applications/MacVim.app/Contents/MacOS/mvimdiff --remote-tab-silent'
-
-# atom
+# aliases
+## atom
 alias atom='/Applications/Atom.app/Contents/MacOS/Atom'
 
-# colorful commands
+## colorful commands
 alias ls='ls -FG'
-#export LSCOLORS='exfxcxdxbxegedabagacad'
+# export LSCOLORS='exfxcxdxbxegedabagacad'
 export LS_COLORS='no=00:fi=00:di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31'
 
-# shortcut
+## shortcut
+### ls
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 
+### git
+alias g='git'
 alias gs='git status'
+alias gd='git diff'
+alias ga='git add'
+alias gc='git commit'
+alias gco='git checkout'
 
 
-## useful commands
-# zmv
+# useful commands
+## zmv
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
 
-# take
+## take
 function take() {
   mkdir -p $1
   cd $1
 }
 
-# webrick
+## webrick
 alias webrick="ruby -run -e httpd -- -p 3000 ."
 
-# easy C/C++ runner
+## easy C/C++ runner
 function runc () {
   cc $CFLAGS $1 $LDFLAGS && shift && ./a.out $@
 }
@@ -136,7 +138,7 @@ function runcpp () {
 }
 alias -s {cc,cpp,cxx}=runcpp
 
-# spectrum list
+## spectrum list
 function spectrum_ls() {
   for code in {000..015}; do
     print -P -n "[38;05;${code}m$code "
