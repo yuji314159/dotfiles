@@ -6,7 +6,7 @@ module.exports = {
   config: {
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
-    updateChannel: 'canary',
+    updateChannel: 'stable',
 
     // default font size in pixels for all tabs
     fontSize: 14,
@@ -40,7 +40,7 @@ module.exports = {
 
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: 'rgba(21, 21, 21, 0.8)',
+    backgroundColor: 'rgba(21, 21, 21, 0.85)',
 
     // terminal selection color
     selectionColor: 'rgba(244, 191, 117, 0.3)',
@@ -49,7 +49,11 @@ module.exports = {
     borderColor: '#f4bf75',
 
     // custom CSS to embed in the main window
-    css: '',
+    css: `
+      .term_wrapper {
+        overflow: visible;
+      }
+    `,
 
     // custom CSS to embed in the terminal window
     termCSS: '',
