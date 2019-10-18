@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 14,
 
     // font family with optional fallbacks
-    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: '"Noto Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -22,6 +22,9 @@ module.exports = {
 
     // line height as a relative unit
     lineHeight: 1.08,
+
+    // letter spacing as a relative unit
+    letterSpacing: 0,
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(244, 191, 117, 0.8)',
@@ -36,17 +39,17 @@ module.exports = {
     cursorBlink: true,
 
     // color of the text
-    foregroundColor: '#d0d0d0',
+    foregroundColor: '#a5a2a2',
 
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: 'rgba(21, 21, 21, 0.85)',
+    backgroundColor: 'rgba(9, 3, 0, 0.85)',
 
     // terminal selection color
-    selectionColor: 'rgba(244, 191, 117, 0.3)',
+    selectionColor: 'rgba(181, 228, 244, 0.6)',
 
     // border color (window, tabs)
-    borderColor: '#f4bf75',
+    borderColor: '#333',
 
     // custom CSS to embed in the main window
     css: `
@@ -73,43 +76,23 @@ module.exports = {
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
-    // molokai
-    // colors: {
-    //   black: '#121212',
-    //   red: '#fa2573',
-    //   green: '#98e123',
-    //   yellow: '#dfd460',
-    //   blue: '#1080d0',
-    //   magenta: '#8700ff',
-    //   cyan: '#43a8d0',
-    //   white: '#bbbbbb',
-    //   lightBlack: '#555555',
-    //   lightRed: '#f6669d',
-    //   lightGreen: '#b1e05f',
-    //   lightYellow: '#fff26d',
-    //   lightBlue: '#00afff',
-    //   lightMagenta: '#af87ff',
-    //   lightCyan: '#51ceff',
-    //   lightWhite: '#ffffff'
-    // },
-    // default
     colors: {
-      black: '#151515',
-      red: '#ac4142',
-      green: '#90a959',
-      yellow: '#f4bf75',
-      blue: '#6a9fb5',
-      magenta: '#aa759f',
-      cyan: '#75b5aa',
-      white: '#d0d0d0',
-      lightBlack: '#505050',
-      lightRed: '#ac4142',
-      lightGreen: '#90a959',
-      lightYellow: '#f4bf75',
-      lightBlue: '#6a9fb5',
-      lightMagenta: '#aa759f',
-      lightCyan: '#75b5aa',
-      lightWhite: '#f5f5f5'
+      black: '#090300',
+      red: '#db2d20',
+      green: '#01a252',
+      yellow: '#fded02',
+      blue: '#01a0e4',
+      magenta: '#a16a94',
+      cyan: '#b5e4f4',
+      white: '#a5a2a2',
+      lightBlack: '#5c5855',
+      lightRed: '#e8bbd0',
+      lightGreen: '#3a3432',
+      lightYellow: '#4a4543',
+      lightBlue: '#807d7c',
+      lightMagenta: '#d6d5d4',
+      lightCyan: '#cdab53',
+      lightWhite: '#f7f7f7'
     },
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
@@ -144,10 +127,19 @@ module.exports = {
 
     // if `true` (without backticks and without quotes), on right click selected text will be copied or pasted if no
     // selection is present (`true` by default on Windows and disables the context menu feature)
-    // quickEdit: true,
+    quickEdit: false,
+
+    // choose either `'vertical'`, if you want the column mode when Option key is hold during selection (Default)
+    // or `'force'`, if you want to force selection regardless of whether the terminal is in mouse events mode
+    // (inside tmux or vim with mouse mode enabled for example).
+    macOptionSelectionMode: 'vertical',
 
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
+
+    // Whether to use the WebGL renderer. Set it to false to use canvas-based
+    // rendering (slower, but supports transparent backgrounds)
+    webGLRenderer: true,
 
     // for advanced config flags please refer to https://hyper.is/#cfg
   },
