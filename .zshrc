@@ -59,7 +59,7 @@ add-zsh-hook preexec _preexec_title
 
 
 # path
-# export PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 ## rbenv
@@ -67,13 +67,15 @@ eval "$(rbenv init -)"
 
 ## pyenv & vitualenv
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 ## goenv
 eval "$(goenv init -)"
 export GOROOT=`goenv prefix`
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+
+## nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 ## gcp sdk
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
