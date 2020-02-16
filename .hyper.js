@@ -86,12 +86,12 @@ module.exports = {
       cyan: '#b5e4f4',
       white: '#a5a2a2',
       lightBlack: '#5c5855',
-      lightRed: '#e8bbd0',
-      lightGreen: '#3a3432',
-      lightYellow: '#4a4543',
-      lightBlue: '#807d7c',
-      lightMagenta: '#d6d5d4',
-      lightCyan: '#cdab53',
+      lightRed: '#db2d20',
+      lightGreen: '#01a252',
+      lightYellow: '#fded02',
+      lightBlue: '#01a0e4',
+      lightMagenta: '#a16a94',
+      lightCyan: '#b5e4f4',
       lightWhite: '#f7f7f7'
     },
 

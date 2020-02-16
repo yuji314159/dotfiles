@@ -77,6 +77,10 @@ export PATH="$GOPATH/bin:$PATH"
 ## nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+## jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 ## gcp sdk
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 # source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
