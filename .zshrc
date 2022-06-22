@@ -59,7 +59,7 @@ add-zsh-hook preexec _preexec_title
 
 
 # path
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 ## rbenv
@@ -68,22 +68,26 @@ eval "$(rbenv init -)"
 ## pyenv & vitualenv
 eval "$(pyenv init -)"
 
-## goenv
-eval "$(goenv init -)"
-export GOROOT=`goenv prefix`
+## go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 ## nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 ## jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+## rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 ## gcp sdk
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 # source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+## flutter sdk
+export PATH="$PATH:$HOME/flutter/bin"
 
 ## completion
 autoload -Uz compinit
