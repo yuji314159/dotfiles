@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 14,
 
     // font family with optional fallbacks
-    fontFamily: '"Noto Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
@@ -61,6 +61,9 @@ module.exports = {
     // custom CSS to embed in the terminal window
     termCSS: '',
 
+    // set custom startup directory (must be an absolute path)
+    workingDirectory: '',
+
     // if you're using a Linux setup which show native menus, set to false
     // default: `true` on Linux, `true` on Windows, ignored on macOS
     showHamburgerMenu: '',
@@ -102,11 +105,17 @@ module.exports = {
     // - Make sure to use a full path if the binary name doesn't work
     // - Remove `--login` in shellArgs
     //
-    // Bash on Windows
-    // - Example: `C:\\Windows\\System32\\bash.exe`
+    // Windows Subsystem for Linux (WSL) - previously Bash on Windows
+    // - Example: `C:\\Windows\\System32\\wsl.exe`
+    //
+    // Git-bash on Windows
+    // - Example: `C:\\Program Files\\Git\\bin\\bash.exe`
     //
     // PowerShell on Windows
     // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
+    //
+    // Cygwin
+    // - Example: `C:\\cygwin64\\bin\\bash.exe`
     shell: '',
 
     // for setting shell arguments (i.e. for using interactive shellArgs: `['-i']`)
@@ -116,8 +125,13 @@ module.exports = {
     // for environment variables
     env: {},
 
-    // set to `false` for no bell
+    // Supported Options:
+    //  1. 'SOUND' -> Enables the bell as a sound
+    //  2. false: turns off the bell
     bell: 'SOUND',
+
+    // An absolute file path to a sound file on the machine.
+    // bellSoundURL: '/path/to/sound/file',
 
     // if `true` (without backticks and without quotes), selected text will automatically be copied to the clipboard
     copyOnSelect: false,
@@ -134,12 +148,25 @@ module.exports = {
     // (inside tmux or vim with mouse mode enabled for example).
     macOptionSelectionMode: 'vertical',
 
-    // URL to custom bell
-    // bellSoundURL: 'http://example.com/bell.mp3',
-
     // Whether to use the WebGL renderer. Set it to false to use canvas-based
     // rendering (slower, but supports transparent backgrounds)
     webGLRenderer: true,
+
+    // keypress required for weblink activation: [ctrl|alt|meta|shift]
+    // todo: does not pick up config changes automatically, need to restart terminal :/
+    webLinksActivationKey: 'meta',
+
+    // if `false` (without backticks and without quotes), Hyper will use ligatures provided by some fonts
+    disableLigatures: true,
+
+    // set to true to disable auto updates
+    disableAutoUpdates: false,
+
+    // set to true to enable screen reading apps (like NVDA) to read the contents of the terminal
+    screenReaderMode: false,
+
+    // set to true to preserve working directory when creating splits or tabs
+    preserveCWD: false,
 
     // for advanced config flags please refer to https://hyper.is/#cfg
   },

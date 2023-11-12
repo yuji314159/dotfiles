@@ -59,25 +59,29 @@ add-zsh-hook preexec _preexec_title
 
 
 # path
-export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/sbin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 ## rbenv
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 ## pyenv & vitualenv
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 ## go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 ## nodebrew
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
+# export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 ## jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
+
+# sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 ## rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -87,7 +91,7 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.in
 # source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
 ## flutter sdk
-export PATH="$PATH:$HOME/flutter/bin"
+# export PATH="$PATH:$HOME/flutter/bin"
 
 ## completion
 autoload -Uz compinit
@@ -99,7 +103,7 @@ setopt correct
 
 # aliases
 ## atom
-alias atom='/Applications/Atom.app/Contents/MacOS/Atom'
+# alias atom='/Applications/Atom.app/Contents/MacOS/Atom'
 
 ## colorful commands
 alias ls='ls -FG'
@@ -122,6 +126,7 @@ alias gd='git diff'
 alias ga='git add'
 alias gc='git commit'
 alias gco='git checkout'
+alias gsw='git switch'
 
 
 # useful commands
