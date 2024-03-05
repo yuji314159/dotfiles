@@ -1,0 +1,33 @@
+format = "$status$time $username[@](fg:cyan)$hostname $directory $git_status$git_branch$git_commit\n\\$ "
+
+[time]
+disabled = false
+format = '[$time]($style)'
+style = 'fg:green'
+time_format = '%Y/%m/%d %H:%M:%S'
+
+[username]
+format = '[$user]($style)'
+style_root = 'fg:red'
+style_user = 'fg:cyan'
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '[$hostname]($style)'
+style = 'fg:cyan'
+
+[status]
+disabled = false
+format = '[ $symbol ]($style)'
+symbol = 'x'
+style = 'bg:red'
+
+[directory]
+truncation_length = 0
+format = '[$path]($style)'
+style = ''
+
+[git_status]
+format = '[$all_status$ahead_behind]($style) '
+style = 'fg:red'

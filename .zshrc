@@ -50,6 +50,10 @@ PS1='
 %(?,%F{green},%F{red})%D{%Y/%m/%d %H:%M:%S}%f %F{cyan}%n@%m%f %~${vcs_info_msg_0_}
 %(!,#,$) '
 
+### powered by starship
+# eval "$(starship init zsh)"
+# export STARSHIP_CONFIG=~/dotfiles/starship.toml
+
 ## title
 autoload -Uz add-zsh-hook
 _precmd_title() { print -Pn '\e]0;%n@%m:%~\a' }
@@ -62,24 +66,11 @@ add-zsh-hook preexec _preexec_title
 export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/sbin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-## rbenv
-# eval "$(rbenv init -)"
-
-## pyenv & vitualenv
-# eval "$(pyenv init -)"
-
 ## go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
-## nodebrew
-# export PATH="$HOME/.nodebrew/current/bin:$PATH"
-
-## jenv
-# export PATH="$HOME/.jenv/bin:$PATH"
-# eval "$(jenv init -)"
-
-# sdkman
+## sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
@@ -102,8 +93,6 @@ setopt correct
 
 
 # aliases
-## atom
-# alias atom='/Applications/Atom.app/Contents/MacOS/Atom'
 
 ## colorful commands
 alias ls='ls -FG'
@@ -120,13 +109,11 @@ alias la='ls -a'
 alias lla='ls -la'
 
 ### git
-alias g='git'
+# alias g='git'
 alias gs='git status'
 alias gd='git diff'
 alias ga='git add'
 alias gc='git commit'
-alias gco='git checkout'
-alias gsw='git switch'
 
 
 # useful commands
@@ -139,19 +126,6 @@ function take() {
   mkdir -p $1
   cd $1
 }
-
-## webrick
-alias webrick="ruby -run -e httpd -- -p 3000 ."
-
-## easy C/C++ runner
-function runc () {
-  cc $CFLAGS $1 $LDFLAGS && shift && ./a.out $@
-}
-alias -s c=runc
-function runcpp () {
-  c++ $CXXFLAGS $1 $LDFLAGS && shift && ./a.out $@
-}
-alias -s {cc,cpp,cxx}=runcpp
 
 ## spectrum list
 function spectrum_ls() {
@@ -166,5 +140,21 @@ function spectrum_ls() {
     if [ `expr $code % 6` -eq 3  ]; then
       print
     fi
+  done
+}
+
+## brew utils
+function brewdepsupdate() {
+  brew list --formula > brewlist
+  brew deps --formula --installed > brewdeps
+}
+
+function brewdepscheck() {
+  cat brewdeps | grep $1
+}
+
+function brewdepscheckall() {
+  for formula in $(cat brewlist); do
+    cat brewdeps | cut -d: -f2 | grep $formula > /dev/null || echo $formula;
   done
 }
