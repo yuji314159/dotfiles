@@ -59,7 +59,7 @@ add-zsh-hook preexec _preexec_title
 
 
 # path
-export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:/opt/homebrew/bin:/usr/local/sbin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 ## rbenv
@@ -87,7 +87,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 ## gcp sdk
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 # source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
 ## flutter sdk
@@ -168,3 +168,5 @@ function spectrum_ls() {
     fi
   done
 }
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
