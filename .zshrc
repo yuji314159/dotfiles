@@ -91,6 +91,9 @@ LISTMAX=0
 setopt list_packed
 setopt correct
 
+## fzf
+source <(fzf --zsh)
+
 
 # aliases
 
