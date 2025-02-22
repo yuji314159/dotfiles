@@ -94,6 +94,9 @@ setopt correct
 ## fzf
 source <(fzf --zsh)
 
+## llvm
+export PATH="$(brew --prefix)/opt/llvm/bin:$PATH"
+
 
 # aliases
 
