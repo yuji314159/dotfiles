@@ -66,6 +66,9 @@ add-zsh-hook preexec _preexec_title
 export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/sbin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+## mise
+eval "$(mise activate zsh)"
+
 ## go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
