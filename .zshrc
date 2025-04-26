@@ -69,6 +69,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 ## mise
 eval "$(mise activate zsh)"
 
+## python uv
+eval "$(uv generate-shell-completion zsh)"
+
 ## go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
